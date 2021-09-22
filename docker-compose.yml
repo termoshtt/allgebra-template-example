@@ -1,0 +1,13 @@
+version: '3'
+services:
+  allgebra:
+    image: "ghcr.io/ricosjp/allgebra/cuda11_4/clang12/mkl:21.09.0"
+    # Expose host GPU to container
+    # See https://docs.docker.com/compose/gpu-support/
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
